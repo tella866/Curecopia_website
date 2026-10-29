@@ -18,19 +18,18 @@ import {
   PackageCheck,
   Search,
   ShieldCheck,
-  Sparkles,
   Truck,
   X,
 } from "lucide-react";
 
 const products = [
-  { name: "Metformin HCl", category: "APIs", cas: "1115-70-4", grade: "Pharma grade", standard: "USP / BP / IP", availability: "Ready to ship", color: "mint", icon: "M" },
-  { name: "Amoxicillin Trihydrate", category: "APIs", cas: "61336-70-7", grade: "Pharma grade", standard: "USP / BP / EP", availability: "On request", color: "lavender", icon: "A" },
-  { name: "Atorvastatin Calcium", category: "APIs", cas: "134523-03-8", grade: "Pharma grade", standard: "USP / EP", availability: "Ready to ship", color: "peach", icon: "A" },
-  { name: "Vitamin D3 Softgels", category: "Finished Dosages", cas: "58-89-9", grade: "Finished dosage", standard: "USP / BP", availability: "Ready to ship", color: "blue", icon: "D₃" },
-  { name: "Azithromycin Tablets", category: "Finished Dosages", cas: "83905-01-5", grade: "Finished dosage", standard: "USP / IP", availability: "On request", color: "mint", icon: "A" },
-  { name: "Sitagliptin Intermediate", category: "Intermediates", cas: "486460-32-6", grade: "Key intermediate", standard: "Custom spec", availability: "On request", color: "lavender", icon: "S" },
-  { name: "Omega-3 Concentrate", category: "Nutraceuticals", cas: "8016-13-5", grade: "Nutraceutical", standard: "USP / EP", availability: "Ready to ship", color: "peach", icon: "Ω" },
+  { name: "Metformin HCl", category: "APIs", cas: "1115-70-4", grade: "Pharma grade", standard: "USP / BP / IP", availability: "Ready to ship" },
+  { name: "Amoxicillin Trihydrate", category: "APIs", cas: "61336-70-7", grade: "Pharma grade", standard: "USP / BP / EP", availability: "On request" },
+  { name: "Atorvastatin Calcium", category: "APIs", cas: "134523-03-8", grade: "Pharma grade", standard: "USP / EP", availability: "Ready to ship" },
+  { name: "Vitamin D3 Softgels", category: "Finished Dosages", cas: "58-89-9", grade: "Finished dosage", standard: "USP / BP", availability: "Ready to ship" },
+  { name: "Azithromycin Tablets", category: "Finished Dosages", cas: "83905-01-5", grade: "Finished dosage", standard: "USP / IP", availability: "On request" },
+  { name: "Sitagliptin Intermediate", category: "Intermediates", cas: "486460-32-6", grade: "Key intermediate", standard: "Custom spec", availability: "On request" },
+  { name: "Omega-3 Concentrate", category: "Nutraceuticals", cas: "8016-13-5", grade: "Nutraceutical", standard: "USP / EP", availability: "Ready to ship" },
 ];
 
 const categories = ["All", "APIs", "Finished Dosages", "Intermediates", "Nutraceuticals"];
@@ -94,7 +93,7 @@ function Hero() {
       <div className="hero-orb hero-orb-two" />
       <div className="container hero-grid">
         <div className="hero-copy">
-          <div className="hero-kicker"><span className="kicker-icon"><Sparkles size={13} /></span> A more certain way to source</div>
+          <div className="hero-kicker"><span className="kicker-line" /> PHARMACEUTICAL SUPPLY & MANUFACTURING</div>
           <h1>Better supply.<br /><span>Better health.</span></h1>
           <p className="hero-description">Your trusted partner for pharmaceutical APIs, finished dosage forms, and manufacturing built for a world that can’t wait.</p>
           <div className="hero-actions">
@@ -102,29 +101,22 @@ function Hero() {
             <a className="button button-ghost" href="#inquiry">Talk to our team <ArrowUpRight size={15} /></a>
           </div>
           <div className="hero-proof">
-            <div className="proof-avatars" aria-hidden="true"><span>R</span><span>M</span><span>A</span><span>+</span></div>
-            <div><div className="proof-stars">★★★★★</div><p>Trusted by partners in <strong>50+ countries</strong></p></div>
+            <span className="proof-shield"><ShieldCheck size={17} /></span>
+            <div><strong>Quality at every step</strong><p>Documentation, qualification, and delivery aligned.</p></div>
           </div>
         </div>
-        <div className="hero-visual" aria-label="Illustration of pharmaceutical quality and supply">
-          <div className="visual-glow" />
-          <div className="visual-grid" />
-          <div className="visual-circle circle-back" />
-          <div className="visual-circle circle-front" />
-          <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-          <div className="hero-product hero-bottle">
-            <div className="bottle-cap" />
-            <div className="bottle-neck" />
-            <div className="bottle-body">
-              <span className="bottle-symbol"><Dna size={30} strokeWidth={1.6} /></span>
-              <span className="bottle-brand">CURECOPIA</span>
-              <span className="bottle-label-line" />
-              <span className="bottle-label-small">QUALITY. WITHOUT COMPROMISE.</span>
+        <div className="hero-visual">
+          <div className="assurance-panel">
+            <div className="assurance-heading"><span>OUR APPROACH</span><span>01 — 03</span></div>
+            <h2>Quality is built into<br />every order.</h2>
+            <p>Reliable pharmaceutical supply starts well before a shipment leaves the facility.</p>
+            <div className="assurance-list">
+              <div><span className="assurance-icon"><ShieldCheck size={17} /></span><span><strong>Manufacturer qualification</strong><small>Carefully assessed supply partners</small></span><Check size={15} /></div>
+              <div><span className="assurance-icon"><FileCheck2 size={17} /></span><span><strong>Documentation support</strong><small>Records aligned to your requirements</small></span><Check size={15} /></div>
+              <div><span className="assurance-icon"><Truck size={17} /></span><span><strong>Coordinated delivery</strong><small>Logistics planned for your market</small></span><Check size={15} /></div>
             </div>
+            <span className="assurance-foot">A MORE THOUGHTFUL SUPPLY PARTNER</span>
           </div>
-          <div className="floating-card card-certified"><span className="floating-icon"><ShieldCheck size={18} /></span><span><strong>Quality assured</strong><small>Every step, verified</small></span><Check className="floating-check" size={15} /></div>
-          <div className="floating-card card-delivery"><span className="delivery-icon"><Truck size={18} /></span><span><strong>On its way</strong><small>Handled with care</small></span><span className="delivery-dot" /></div>
-          <div className="visual-caption"><span className="caption-line" /> Precision at every step <span>01 / 04</span></div>
         </div>
       </div>
       <div className="container hero-bottom">
@@ -143,7 +135,7 @@ function Hero() {
 function ProductCard({ product, onQuote }) {
   return (
     <article className="product-card">
-      <div className={`product-art art-${product.color}`}><span className="product-letter">{product.icon}</span><span className="product-art-grid" /><span className="product-art-orbit" /><span className="product-kind">{product.category === "APIs" ? "API" : product.category === "Finished Dosages" ? "FDF" : product.category === "Intermediates" ? "INT" : "NUTRA"}</span></div>
+      <div className="product-art"><Dna size={28} strokeWidth={1.35} /><span className="product-kind">{product.category === "APIs" ? "API" : product.category === "Finished Dosages" ? "FDF" : product.category === "Intermediates" ? "INT" : "NUTRA"}</span></div>
       <div className="product-content">
         <span className="product-cas">CAS {product.cas}</span>
         <h3>{product.name}</h3>
