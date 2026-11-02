@@ -32,6 +32,49 @@ const products = [
   { name: "Omega-3 Concentrate", category: "Nutraceuticals", cas: "8016-13-5", grade: "Nutraceutical", standard: "USP / EP", availability: "Ready to ship" },
 ];
 
+const productGroups = [
+  {
+    name: "Analgesics & Anti-inflammatory",
+    category: "Therapeutic categories",
+    items: ["Aceclofenac", "Diclofenac Sodium", "Etoricoxib", "Ibuprofen", "Nimesulide", "Paracetamol"],
+  },
+  {
+    name: "Anti-infectives",
+    category: "Therapeutic categories",
+    items: ["Amoxicillin", "Azithromycin", "Cefixime", "Cefuroxime Axetil", "Ciprofloxacin", "Clarithromycin"],
+  },
+  {
+    name: "Cardiovascular",
+    category: "Therapeutic categories",
+    items: ["Amlodipine Besylate", "Atorvastatin Calcium", "Losartan Potassium", "Metoprolol Succinate", "Rosuvastatin Calcium", "Telmisartan"],
+  },
+  {
+    name: "Diabetes care",
+    category: "Therapeutic categories",
+    items: ["Dapagliflozin", "Empagliflozin", "Gliclazide", "Metformin HCl", "Sitagliptin Phosphate", "Vildagliptin"],
+  },
+  {
+    name: "Gastrointestinal",
+    category: "Therapeutic categories",
+    items: ["Esomeprazole", "Lansoprazole", "Omeprazole", "Pantoprazole Sodium", "Rabeprazole Sodium", "Ranitidine"],
+  },
+  {
+    name: "Central nervous system",
+    category: "Therapeutic categories",
+    items: ["Carbamazepine", "Escitalopram Oxalate", "Levetiracetam", "Pregabalin", "Sertraline HCl", "Venlafaxine"],
+  },
+  {
+    name: "Antihistamines & respiratory",
+    category: "Therapeutic categories",
+    items: ["Cetirizine HCl", "Desloratadine", "Fexofenadine HCl", "Levocetirizine", "Montelukast Sodium", "Loratadine"],
+  },
+  {
+    name: "Vitamins & nutraceuticals",
+    category: "Therapeutic categories",
+    items: ["Ascorbic Acid", "Cholecalciferol", "Cyanocobalamin", "Folic Acid", "Omega-3 Concentrate", "Vitamin E"],
+  },
+];
+
 const categories = ["All", "APIs", "Finished Dosages", "Intermediates", "Nutraceuticals"];
 
 const regions = {
@@ -94,11 +137,11 @@ function Hero() {
       <div className="container hero-grid">
         <div className="hero-copy">
           <div className="hero-kicker"><span className="kicker-line" /> PHARMACEUTICAL SUPPLY & MANUFACTURING</div>
-          <h1>Better supply.<br /><span>Better health.</span></h1>
-          <p className="hero-description">Your trusted partner for pharmaceutical APIs, finished dosage forms, and manufacturing built for a world that can’t wait.</p>
+          <h1>Pharmaceutical products.<br /><span>Reliable supply.</span></h1>
+          <p className="hero-description">Explore our pharmaceutical portfolio across APIs, finished dosage forms, and therapeutic categories. We support your sourcing needs with responsive service and market-ready documentation.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#products">Explore our products <ArrowRight size={16} /></a>
-            <a className="button button-ghost" href="#inquiry">Talk to our team <ArrowUpRight size={15} /></a>
+            <a className="button button-primary" href="#catalog">Browse product range <ArrowRight size={16} /></a>
+            <a className="button button-ghost" href="#inquiry">Send an inquiry <ArrowUpRight size={15} /></a>
           </div>
           <div className="hero-proof">
             <span className="proof-shield"><ShieldCheck size={17} /></span>
@@ -106,16 +149,17 @@ function Hero() {
           </div>
         </div>
         <div className="hero-visual">
-          <div className="assurance-panel">
-            <div className="assurance-heading"><span>OUR APPROACH</span><span>01 — 03</span></div>
-            <h2>Quality is built into<br />every order.</h2>
-            <p>Reliable pharmaceutical supply starts well before a shipment leaves the facility.</p>
-            <div className="assurance-list">
-              <div><span className="assurance-icon"><ShieldCheck size={17} /></span><span><strong>Manufacturer qualification</strong><small>Carefully assessed supply partners</small></span><Check size={15} /></div>
-              <div><span className="assurance-icon"><FileCheck2 size={17} /></span><span><strong>Documentation support</strong><small>Records aligned to your requirements</small></span><Check size={15} /></div>
-              <div><span className="assurance-icon"><Truck size={17} /></span><span><strong>Coordinated delivery</strong><small>Logistics planned for your market</small></span><Check size={15} /></div>
+          <div className="hero-catalog-panel">
+            <div className="hero-catalog-heading"><span>PRODUCT RANGE</span><span>01 — 04</span></div>
+            <h2>Products for a<br />range of markets.</h2>
+            <p>Browse key categories, or tell us what you’re looking for.</p>
+            <div className="hero-category-list">
+              <a href="#catalog"><span>01</span>Active pharmaceutical ingredients<ArrowRight size={15} /></a>
+              <a href="#catalog"><span>02</span>Finished dosage forms<ArrowRight size={15} /></a>
+              <a href="#catalog"><span>03</span>Therapeutic categories<ArrowRight size={15} /></a>
+              <a href="#inquiry"><span>04</span>Custom sourcing & manufacturing<ArrowRight size={15} /></a>
             </div>
-            <span className="assurance-foot">A MORE THOUGHTFUL SUPPLY PARTNER</span>
+            <span className="assurance-foot">PHARMACEUTICAL SUPPLY & EXPORT</span>
           </div>
         </div>
       </div>
@@ -149,6 +193,7 @@ function ProductCard({ product, onQuote }) {
 function ProductCatalog({ onQuote }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
+  const [activeGroup, setActiveGroup] = useState(null);
   const shownProducts = useMemo(() => products.filter((product) => {
     const matchesCategory = activeCategory === "All" || product.category === activeCategory;
     const query = search.trim().toLowerCase();
@@ -171,6 +216,33 @@ function ProductCatalog({ onQuote }) {
         </div>
         {shownProducts.length > 0 ? <div className="product-grid">{shownProducts.map((product) => <ProductCard key={product.name} product={product} onQuote={onQuote} />)}</div> : <div className="empty-products"><Search size={21} /><strong>No matching products yet</strong><span>Try a different molecule, CAS number, or category.</span><button onClick={() => { setSearch(""); setActiveCategory("All"); }}>Clear filters</button></div>}
         <div className="catalog-foot"><span>Need something specific? Our team can source beyond the catalog.</span><a href="#inquiry">Ask our sourcing team <ArrowRight size={15} /></a></div>
+        <div className="range-section" id="catalog">
+          <div className="range-heading">
+            <div><SectionEyebrow>Explore by therapeutic area</SectionEyebrow><h3>Our product range</h3></div>
+            <p>Browse selected molecules across our key therapeutic categories. Availability and specifications may vary by market.</p>
+          </div>
+          <div className="range-layout">
+            <nav className="range-index" aria-label="Therapeutic category index">
+              {productGroups.map((group, index) => (
+                <button key={group.name} className={activeGroup === index ? "selected" : ""} onClick={() => setActiveGroup(activeGroup === index ? null : index)}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>{group.name}<ArrowRight size={14} />
+                </button>
+              ))}
+            </nav>
+            <div className="range-results">
+              <div className="range-results-heading"><span>{activeGroup === null ? "REPRESENTATIVE MOLECULES" : productGroups[activeGroup].name.toUpperCase()}</span><span>{activeGroup === null ? "48 examples" : `${productGroups[activeGroup].items.length} examples`}</span></div>
+              <div className="molecule-grid">
+                {(activeGroup === null ? productGroups.flatMap((group) => group.items.map((name) => ({ name, category: group.name }))) : productGroups[activeGroup].items.map((name) => ({ name, category: productGroups[activeGroup].name }))).map((product, index) => (
+                  <button className="molecule-row" key={`${product.category}-${product.name}`} onClick={() => onQuote(product.name)}>
+                    <span className="molecule-number">{String(index + 1).padStart(2, "0")}</span><span className="molecule-name">{product.name}</span><ArrowUpRight size={14} />
+                  </button>
+                ))}
+              </div>
+              <a className="range-inquiry" href="#inquiry">Looking for a specific product? Contact our team <ArrowRight size={14} /></a>
+            </div>
+          </div>
+          <p className="range-disclaimer">Representative molecules are shown for portfolio navigation. Confirm product availability, specifications, and market suitability with our team.</p>
+        </div>
       </div>
     </section>
   );
