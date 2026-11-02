@@ -406,3 +406,223 @@ button { cursor: pointer; }
 @media (max-width: 400px) {
   .molecule-grid { grid-template-columns: 1fr; }
 }
+
+:root {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.brand-name,
+.hero h1,
+.hero-catalog-panel h2,
+.section-heading h2,
+.range-heading h3,
+.quality-copy h2,
+.inquiry-copy h2,
+.capability-card h3,
+.network-details h3,
+.form-heading h3 {
+  font-family: "IBM Plex Sans", sans-serif;
+  letter-spacing: -.035em;
+}
+
+.brand-name { font-size: 22px; font-weight: 600; }
+.main-nav { gap: 25px; }
+.main-nav > a:not(.nav-cta) { font-size: 13px; font-weight: 500; }
+.nav-cta { font-size: 13px; }
+.hero { padding-top: 68px; }
+.hero-grid { min-height: 470px; gap: 48px; }
+.hero-copy { padding-bottom: 24px; }
+.hero-kicker { font-size: 11px; letter-spacing: 1.15px; }
+.hero h1 { max-width: 660px; font-size: clamp(42px, 4.35vw, 58px); line-height: 1.12; font-weight: 600; }
+.hero-description { max-width: 510px; font-size: 16px; line-height: 1.7; }
+.hero-actions { margin-top: 30px; }
+.button { font-size: 13px; padding: 14px 18px; }
+.hero-proof { margin-top: 32px; }
+.hero-proof strong { font-size: 12px; }
+.hero-proof p { font-size: 11px; }
+.hero-catalog-panel { padding: 30px 28px 20px; }
+.hero-catalog-heading { font-size: 9px; }
+.hero-catalog-panel h2 { margin-top: 34px; font-size: 29px; line-height: 1.28; font-weight: 600; }
+.hero-catalog-panel > p { font-size: 13px; line-height: 1.65; }
+.hero-category-list { margin-top: 22px; }
+.hero-category-list a { min-height: 47px; font-size: 12px; gap: 12px; }
+.hero-category-list a > span { font-size: 9px; }
+.assurance-foot { font-size: 9px; }
+.hero-metrics { gap: 34px; }
+.hero-metrics > div { min-width: 100px; }
+.hero-metrics strong { font-size: 18px; }
+.hero-metrics small { font-size: 10px; }
+.hero-scroll { font-size: 9px; }
+
+.section { padding-top: 96px; padding-bottom: 96px; }
+.eyebrow { font-size: 10px; letter-spacing: 1.2px; }
+.section-heading h2,
+.quality-copy h2,
+.inquiry-copy h2 { font-size: clamp(34px, 3.4vw, 43px); line-height: 1.16; }
+.section-heading > p { max-width: 440px; font-size: 14px; line-height: 1.75; }
+.center-heading > p { font-size: 14px; }
+.catalog-toolbar { margin-top: 38px; }
+.catalog-search { height: 45px; width: min(390px, 100%); }
+.catalog-search input { font-size: 12px; }
+.category-pills button { padding: 9px 12px; font-size: 11px; }
+.product-art { height: 126px; }
+.product-kind { font-size: 9px; }
+.product-content { padding: 16px; }
+.product-cas { font-size: 10px; }
+.product-content h3 { font-family: "IBM Plex Sans", sans-serif; font-size: 15px; font-weight: 600; }
+.product-specs span { padding: 5px 7px; font-size: 9px; }
+.availability { font-size: 10px; }
+.product-card-footer button { width: 31px; height: 31px; }
+.catalog-foot { margin-top: 24px; font-size: 11px; }
+.catalog-foot a { font-size: 11px; }
+.range-section { margin-top: 82px; padding-top: 38px; }
+.range-heading h3 { font-size: 30px; font-weight: 600; }
+.range-heading > p { font-size: 12px; }
+.range-layout { margin-top: 28px; }
+.range-index { padding-block: 12px; }
+.range-index button { min-height: 46px; font-size: 12px; }
+.range-index button > span { font-size: 9px; }
+.range-results { padding: 21px 23px 18px; }
+.range-results-heading { font-size: 9px; }
+.molecule-row { min-height: 41px; gap: 10px; }
+.molecule-number { font-size: 9px; }
+.molecule-name { font-size: 11px; }
+.range-inquiry { font-size: 11px; }
+.range-disclaimer { font-size: 10px; }
+
+.capability-card { padding: 25px; min-height: 270px; }
+.cap-icon { width: 45px; height: 45px; }
+.cap-number { font-size: 11px; }
+.cap-label { margin-top: 21px; font-size: 10px; }
+.capability-card h3 { font-size: 20px; }
+.capability-card > p { font-size: 12px; line-height: 1.75; }
+.cap-tags { gap: 6px; margin-top: 15px; }
+.cap-tags span { padding: 5px 7px; font-size: 9px; }
+.cap-link { font-size: 11px; margin-top: 18px; }
+
+.quality-section { padding-block: 90px; }
+.quality-copy > p { max-width: 345px; font-size: 14px; line-height: 1.75; }
+.quality-link { font-size: 12px; }
+.standard-card { min-height: 72px; padding: 14px; }
+.standard-icon { width: 36px; height: 36px; }
+.standard-card strong { font-size: 12px; }
+.standard-card small { font-size: 10px; }
+.dossier-card { padding: 17px; }
+.dossier-card strong { font-size: 12px; }
+.dossier-card p { font-size: 10px; }
+.global-panel { min-height: 405px; }
+.map-topline { font-size: 9px; }
+.map-marker small { font-size: 8px; }
+.map-legend > span { font-size: 9px; }
+.network-label { font-size: 9px; }
+.network-details h3 { font-size: 28px; }
+.region-tabs button { padding-block: 10px; font-size: 11px; }
+.region-detail { font-size: 11px; line-height: 1.7; }
+.logistics-list span { font-size: 10px; }
+
+.inquiry-copy > p { max-width: 350px; font-size: 14px; line-height: 1.75; }
+.inquiry-points span { font-size: 11px; }
+.inquiry-contact small { font-size: 10px; }
+.inquiry-contact a { font-size: 12px; }
+.inquiry-form { padding: 29px; }
+.form-step { font-size: 9px; }
+.form-heading h3 { font-size: 23px; }
+.required-note { font-size: 10px; }
+.form-grid { gap: 16px 14px; padding-top: 21px; }
+.form-field { gap: 7px; }
+.form-field > span { font-size: 10px; }
+.form-field input,
+.form-field select { height: 41px; font-size: 11px; }
+.form-field textarea { min-height: 82px; font-size: 11px; }
+.attach-option { gap: 9px; font-size: 10px; }
+.fake-checkbox { width: 16px; height: 16px; }
+.form-submit-row { margin-top: 19px; padding-top: 18px; }
+.form-submit-row p { font-size: 10px; }
+.form-submit-row .button { font-size: 11px; }
+.form-status { font-size: 11px; }
+
+.footer-brand > p { font-size: 11px; }
+.footer-email { font-size: 11px; }
+.footer-links h4,
+.footer-newsletter h4 { font-size: 13px; }
+.footer-links a { font-size: 11px; }
+.footer-newsletter > p { font-size: 11px; }
+.footer-newsletter form { height: 41px; }
+.footer-newsletter input { font-size: 11px; }
+.footer-compliance > span:first-child { font-size: 10px; }
+.footer-compliance > span:last-child { font-size: 9px; }
+.footer-bottom { font-size: 10px; }
+
+@media (max-width: 1000px) {
+  .hero-grid { gap: 26px; }
+  .hero h1 { font-size: clamp(40px, 5.3vw, 54px); }
+  .hero-description { font-size: 15px; }
+  .hero-catalog-panel { padding-inline: 21px; }
+  .hero-category-list a { font-size: 11px; }
+}
+@media (max-width: 720px) {
+  .main-nav > a:not(.nav-cta) { font-size: 14px; }
+  .nav-cta { font-size: 13px; }
+  .hero { padding-top: 44px; }
+  .hero-grid { gap: 20px; }
+  .hero-copy { padding-bottom: 0; }
+  .hero h1 { font-size: clamp(38px, 9.5vw, 49px); }
+  .hero-description { font-size: 14px; }
+  .hero-catalog-panel { min-height: 350px; padding: 22px 19px 16px; }
+  .hero-catalog-panel h2 { margin-top: 23px; font-size: 25px; }
+  .hero-category-list a { min-height: 45px; font-size: 11px; }
+  .hero-metrics { gap: 8px; }
+  .hero-metrics > div { min-width: 0; }
+  .hero-metrics strong { font-size: 14px; }
+  .hero-metrics small { font-size: 8px; }
+  .section { padding-block: 68px; }
+  .section-heading h2,
+  .quality-copy h2,
+  .inquiry-copy h2 { font-size: 32px; }
+  .section-heading > p { font-size: 13px; }
+  .catalog-toolbar { gap: 12px; }
+  .category-pills button { font-size: 10px; }
+  .product-art { height: 105px; }
+  .product-content { padding: 11px; }
+  .product-content h3 { font-size: 13px; }
+  .product-specs span { font-size: 8px; }
+  .availability { font-size: 8px; }
+  .range-heading h3 { font-size: 26px; }
+  .range-heading > p { font-size: 11px; }
+  .range-index button { font-size: 10px; }
+  .molecule-name { font-size: 10px; }
+  .capability-card { padding: 20px; }
+  .capability-card h3 { font-size: 18px; }
+  .capability-card > p { font-size: 11px; }
+  .quality-copy > p,
+  .inquiry-copy > p { font-size: 13px; }
+  .standard-card { padding: 9px; gap: 7px; }
+  .standard-card strong { font-size: 10px; }
+  .standard-card small { font-size: 8px; }
+  .network-details h3 { font-size: 25px; }
+  .region-tabs button { font-size: 10px; }
+  .inquiry-form { padding: 19px 15px 16px; }
+  .form-field > span { font-size: 9px; }
+  .form-field input,
+  .form-field select,
+  .form-field textarea { font-size: 10px; }
+  .footer-main { gap: 27px 19px; }
+}
+
+@media (max-width: 400px) {
+  .hero h1 { font-size: 36px; }
+  .hero-description { font-size: 13px; }
+  .hero-metrics strong { font-size: 12px; }
+  .hero-metrics small { font-size: 7px; }
+  .section-heading h2,
+  .quality-copy h2,
+  .inquiry-copy h2 { font-size: 29px; }
+}

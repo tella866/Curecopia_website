@@ -26,6 +26,10 @@ const products = [
   { name: "Metformin HCl", category: "APIs", cas: "1115-70-4", grade: "Pharma grade", standard: "USP / BP / IP", availability: "Ready to ship" },
   { name: "Amoxicillin Trihydrate", category: "APIs", cas: "61336-70-7", grade: "Pharma grade", standard: "USP / BP / EP", availability: "On request" },
   { name: "Atorvastatin Calcium", category: "APIs", cas: "134523-03-8", grade: "Pharma grade", standard: "USP / EP", availability: "Ready to ship" },
+  { name: "Microcrystalline Cellulose", category: "Excipients", cas: "9004-34-6", grade: "Pharma excipient", standard: "USP / NF / EP", availability: "On request" },
+  { name: "Magnesium Stearate", category: "Excipients", cas: "557-04-0", grade: "Pharma excipient", standard: "USP / BP / EP", availability: "On request" },
+  { name: "Citric Acid Monohydrate", category: "Fine chemicals", cas: "5949-29-1", grade: "Pharma / food grade", standard: "USP / BP / FCC", availability: "On request" },
+  { name: "Benzyl Alcohol", category: "Fine chemicals", cas: "100-51-6", grade: "Pharma grade", standard: "USP / EP", availability: "On request" },
   { name: "Vitamin D3 Softgels", category: "Finished Dosages", cas: "58-89-9", grade: "Finished dosage", standard: "USP / BP", availability: "Ready to ship" },
   { name: "Azithromycin Tablets", category: "Finished Dosages", cas: "83905-01-5", grade: "Finished dosage", standard: "USP / IP", availability: "On request" },
   { name: "Sitagliptin Intermediate", category: "Intermediates", cas: "486460-32-6", grade: "Key intermediate", standard: "Custom spec", availability: "On request" },
@@ -34,48 +38,76 @@ const products = [
 
 const productGroups = [
   {
+    name: "Active pharmaceutical ingredients",
+    category: "APIs",
+    items: ["Amlodipine Besylate", "Atorvastatin Calcium", "Azithromycin", "Metformin HCl", "Pantoprazole Sodium", "Telmisartan"],
+  },
+  {
+    name: "Pharmaceutical excipients",
+    category: "Excipients",
+    items: ["Croscarmellose Sodium", "Hydroxypropyl Methylcellulose", "Lactose Monohydrate", "Magnesium Stearate", "Microcrystalline Cellulose", "Povidone K30"],
+  },
+  {
+    name: "Fine chemicals & intermediates",
+    category: "Fine chemicals",
+    items: ["4-Aminophenol", "4-Chlorobenzaldehyde", "Benzyl Alcohol", "Citric Acid Monohydrate", "Sodium Acetate", "Sodium Benzoate"],
+  },
+  {
+    name: "Finished dosage forms",
+    category: "Finished dosage forms",
+    items: ["Capsules", "Oral Liquids", "Powders for Suspension", "Sterile Injectables", "Tablets", "Topical Preparations"],
+  },
+  {
     name: "Analgesics & Anti-inflammatory",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Aceclofenac", "Diclofenac Sodium", "Etoricoxib", "Ibuprofen", "Nimesulide", "Paracetamol"],
   },
   {
     name: "Anti-infectives",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Amoxicillin", "Azithromycin", "Cefixime", "Cefuroxime Axetil", "Ciprofloxacin", "Clarithromycin"],
   },
   {
     name: "Cardiovascular",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Amlodipine Besylate", "Atorvastatin Calcium", "Losartan Potassium", "Metoprolol Succinate", "Rosuvastatin Calcium", "Telmisartan"],
   },
   {
     name: "Diabetes care",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Dapagliflozin", "Empagliflozin", "Gliclazide", "Metformin HCl", "Sitagliptin Phosphate", "Vildagliptin"],
   },
   {
     name: "Gastrointestinal",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Esomeprazole", "Lansoprazole", "Omeprazole", "Pantoprazole Sodium", "Rabeprazole Sodium", "Ranitidine"],
   },
   {
     name: "Central nervous system",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Carbamazepine", "Escitalopram Oxalate", "Levetiracetam", "Pregabalin", "Sertraline HCl", "Venlafaxine"],
   },
   {
     name: "Antihistamines & respiratory",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Cetirizine HCl", "Desloratadine", "Fexofenadine HCl", "Levocetirizine", "Montelukast Sodium", "Loratadine"],
   },
   {
     name: "Vitamins & nutraceuticals",
-    category: "Therapeutic categories",
+    category: "API categories",
     items: ["Ascorbic Acid", "Cholecalciferol", "Cyanocobalamin", "Folic Acid", "Omega-3 Concentrate", "Vitamin E"],
   },
 ];
 
-const categories = ["All", "APIs", "Finished Dosages", "Intermediates", "Nutraceuticals"];
+const categories = ["All", "APIs", "Excipients", "Fine chemicals", "Finished Dosages", "Intermediates", "Nutraceuticals"];
+const productTypeLabels = {
+  APIs: "API",
+  Excipients: "EXC",
+  "Fine chemicals": "FINE",
+  "Finished Dosages": "FDF",
+  Intermediates: "INT",
+  Nutraceuticals: "NUTRA",
+};
 
 const regions = {
   "Latin America": { detail: "Regional partners across 12 markets, with Spanish and Portuguese documentation support.", marker: "marker-latam" },
@@ -137,8 +169,8 @@ function Hero() {
       <div className="container hero-grid">
         <div className="hero-copy">
           <div className="hero-kicker"><span className="kicker-line" /> PHARMACEUTICAL SUPPLY & MANUFACTURING</div>
-          <h1>Pharmaceutical products.<br /><span>Reliable supply.</span></h1>
-          <p className="hero-description">Explore our pharmaceutical portfolio across APIs, finished dosage forms, and therapeutic categories. We support your sourcing needs with responsive service and market-ready documentation.</p>
+          <h1>Pharmaceutical supply,<br /><span>you can rely on.</span></h1>
+          <p className="hero-description">A dependable sourcing partner for active pharmaceutical ingredients, excipients, fine chemicals, and finished dosage forms—with responsive support from inquiry through delivery.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#catalog">Browse product range <ArrowRight size={16} /></a>
             <a className="button button-ghost" href="#inquiry">Send an inquiry <ArrowUpRight size={15} /></a>
@@ -150,14 +182,14 @@ function Hero() {
         </div>
         <div className="hero-visual">
           <div className="hero-catalog-panel">
-            <div className="hero-catalog-heading"><span>PRODUCT RANGE</span><span>01 — 04</span></div>
-            <h2>Products for a<br />range of markets.</h2>
-            <p>Browse key categories, or tell us what you’re looking for.</p>
+            <div className="hero-catalog-heading"><span>PHARMACEUTICAL & CHEMICALS</span><span>01 — 04</span></div>
+            <h2>Supply built around<br />your requirements.</h2>
+            <p>Source key ingredients and materials with a team that understands the details.</p>
             <div className="hero-category-list">
               <a href="#catalog"><span>01</span>Active pharmaceutical ingredients<ArrowRight size={15} /></a>
-              <a href="#catalog"><span>02</span>Finished dosage forms<ArrowRight size={15} /></a>
-              <a href="#catalog"><span>03</span>Therapeutic categories<ArrowRight size={15} /></a>
-              <a href="#inquiry"><span>04</span>Custom sourcing & manufacturing<ArrowRight size={15} /></a>
+              <a href="#catalog"><span>02</span>Pharmaceutical excipients<ArrowRight size={15} /></a>
+              <a href="#catalog"><span>03</span>Fine chemicals & intermediates<ArrowRight size={15} /></a>
+              <a href="#inquiry"><span>04</span>Finished dosage & custom sourcing<ArrowRight size={15} /></a>
             </div>
             <span className="assurance-foot">PHARMACEUTICAL SUPPLY & EXPORT</span>
           </div>
@@ -179,7 +211,7 @@ function Hero() {
 function ProductCard({ product, onQuote }) {
   return (
     <article className="product-card">
-      <div className="product-art"><Dna size={28} strokeWidth={1.35} /><span className="product-kind">{product.category === "APIs" ? "API" : product.category === "Finished Dosages" ? "FDF" : product.category === "Intermediates" ? "INT" : "NUTRA"}</span></div>
+      <div className="product-art"><Dna size={28} strokeWidth={1.35} /><span className="product-kind">{productTypeLabels[product.category]}</span></div>
       <div className="product-content">
         <span className="product-cas">CAS {product.cas}</span>
         <h3>{product.name}</h3>
@@ -230,7 +262,7 @@ function ProductCatalog({ onQuote }) {
               ))}
             </nav>
             <div className="range-results">
-              <div className="range-results-heading"><span>{activeGroup === null ? "REPRESENTATIVE MOLECULES" : productGroups[activeGroup].name.toUpperCase()}</span><span>{activeGroup === null ? "48 examples" : `${productGroups[activeGroup].items.length} examples`}</span></div>
+              <div className="range-results-heading"><span>{activeGroup === null ? "REPRESENTATIVE PRODUCTS" : productGroups[activeGroup].name.toUpperCase()}</span><span>{activeGroup === null ? `${productGroups.reduce((total, group) => total + group.items.length, 0)} examples` : `${productGroups[activeGroup].items.length} examples`}</span></div>
               <div className="molecule-grid">
                 {(activeGroup === null ? productGroups.flatMap((group) => group.items.map((name) => ({ name, category: group.name }))) : productGroups[activeGroup].items.map((name) => ({ name, category: productGroups[activeGroup].name }))).map((product, index) => (
                   <button className="molecule-row" key={`${product.category}-${product.name}`} onClick={() => onQuote(product.name)}>
@@ -241,7 +273,7 @@ function ProductCatalog({ onQuote }) {
               <a className="range-inquiry" href="#inquiry">Looking for a specific product? Contact our team <ArrowRight size={14} /></a>
             </div>
           </div>
-          <p className="range-disclaimer">Representative molecules are shown for portfolio navigation. Confirm product availability, specifications, and market suitability with our team.</p>
+          <p className="range-disclaimer">Representative products are shown for portfolio navigation. Confirm product availability, specifications, and market suitability with our team.</p>
         </div>
       </div>
     </section>
