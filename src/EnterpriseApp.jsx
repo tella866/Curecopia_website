@@ -53,7 +53,7 @@ function Header({ market, onMarketChange, itemCount, onOpenRfQ }) {
           <a href="#quality" onClick={() => setMenuOpen(false)}>Quality & compliance</a>
           <a href="#inquiry" onClick={() => setMenuOpen(false)}>Request a quote</a>
           <button className="ep-market-switch" aria-label="Select target market" onClick={() => onMarketChange(market === "Human" ? "Veterinary" : "Human")}>
-            <span className={market === "Human" ? "current" : ""}>Human</span><span className="ep-switch-divider">/</span><span className={market === "Veterinary" ? "current" : ""}>Animal health</span>
+            <span className={market === "Human" ? "current" : ""}>Human Health</span><span className="ep-switch-divider">/</span><span className={market === "Veterinary" ? "current" : ""}>Animal Health</span>
           </button>
           <button className="ep-rfq-button" onClick={onOpenRfQ}><ShoppingBasket size={16} /> Inquiry list <span>{itemCount}</span></button>
         </nav>
@@ -63,22 +63,21 @@ function Header({ market, onMarketChange, itemCount, onOpenRfQ }) {
 }
 
 function Hero({ market, search, onSearch, onSearchSubmit }) {
-  const veterinary = market === "Veterinary";
+  const quickSearches = ["Albendazole", "Fenbendazole", "Meglumine", "Buparvaquone", "Carprofen"];
   return (
     <section className="ep-hero" id="home">
       <div className="ep-container ep-hero-grid">
         <div className="ep-hero-copy">
-          <div className="ep-eyebrow"><span /> {veterinary ? "VETERINARY & ANIMAL HEALTH SOURCING" : "PHARMACEUTICAL & CHEMICAL SOURCING"}</div>
-          <h1>{veterinary ? <>Supply for animal health.<br /><span>Support you can trust.</span></> : <>A dependable source<br />for <span>critical materials.</span></>}</h1>
-          <p>{veterinary
-            ? "Source veterinary APIs, premixes, and animal-health ingredients with market-aware documentation and dependable supply coordination."
-            : "Source pharmaceutical APIs, functional excipients, and fine chemicals through a responsive partner focused on quality, documentation, and supply continuity."}</p>
+          <div className="ep-eyebrow"><span /> HUMAN & ANIMAL HEALTH · GLOBAL B2B SOURCING</div>
+          <h1>Your Direct Partner for High-Purity APIs, Excipients &amp; Fine Chemicals</h1>
+          <p>Global B2B sourcing platform for commercial APIs, functional excipients, and specialty fine chemicals backed by complete regulatory &amp; compliance documentation (DMF, CEP, EU-GMP, US-FDA).</p>
           <form className="ep-global-search" onSubmit={onSearchSubmit}>
             <Search size={19} />
-            <input aria-label="Search by product, CAS number, therapeutic category, or synonym" value={search} onChange={(event) => onSearch(event.target.value)} placeholder="Search product, CAS number, synonym, or category" />
+            <input aria-label="Search by product, CAS number, therapeutic category, or synonym" value={search} onChange={(event) => onSearch(event.target.value)} placeholder="Search product name, CAS number, or therapeutic use" />
             <button type="submit">Search <ArrowRight size={15} /></button>
           </form>
-          <div className="ep-hero-links"><a href="#catalog">Browse catalog <ArrowDownRight size={15} /></a><span>For human and animal health supply chains</span></div>
+          <div className="ep-quick-searches"><span>QUICK SEARCH</span>{quickSearches.map((item) => <button key={item} onClick={() => { onSearch(item); document.querySelector("#catalog")?.scrollIntoView({ behavior: "smooth" }); }}>{item}</button>)}</div>
+          <div className="ep-hero-links"><a href="#catalog">Browse product catalog <ArrowDownRight size={15} /></a><span>Human and animal health supply chains</span></div>
         </div>
         <div className="ep-hero-aside">
           <div className="ep-aside-top"><span>PROCUREMENT SUPPORT</span><span>01 / 04</span></div>
@@ -109,75 +108,67 @@ function StandardsBar({ market }) {
   return <section className="ep-standards"><div className="ep-container ep-standards-inner"><span className="ep-standards-label">QUALITY & REGULATORY FOCUS</span>{standards.map((item) => <span className="ep-standard" key={item}><Check size={14} />{item}</span>)}</div></section>;
 }
 
-function MarketSolutions({ market, onChange }) {
+function MarketSolutions({ onSearch }) {
   const solutions = [
-    { key: "Human", overline: "HUMAN PHARMACEUTICALS", title: "Human health", description: "APIs, functional excipients, and fine chemicals for formulation, development, and commercial procurement.", tags: ["APIs", "Excipients", "Fine chemicals"], icon: <FlaskConical size={21} /> },
-    { key: "Veterinary", overline: "VETERINARY & ANIMAL HEALTH", title: "Animal health", description: "Veterinary APIs, premix ingredients, and supply support tailored to animal-health markets.", tags: ["Veterinary APIs", "Premix ingredients", "Animal nutrition"], icon: <Dna size={21} /> },
+    { key: "API", overline: "01 · ACTIVE PHARMACEUTICAL INGREDIENTS", title: "APIs", description: "High-purity human and veterinary bulk active drug substances. Regulatory documentation and source status are confirmed for each inquiry.", tags: ["Albendazole", "Fenbendazole", "Triclabendazole", "Buparvaquone", "Carprofen"], icon: <FlaskConical size={21} /> },
+    { key: "Excipient", overline: "02 · FUNCTIONAL EXCIPIENTS", title: "Functional excipients", description: "Binders, solubilizers, and stabilizers selected to support formulation performance and manufacturing requirements.", tags: ["Meglumine", "N-Ethyl-D-Glucamine"], icon: <Dna size={21} /> },
+    { key: "Fine Chemical", overline: "03 · SPECIALTY & FINE CHEMICALS", title: "Specialty & fine chemicals", description: "Specialty intermediates, chemical building blocks, and sourcing support for specific project requirements.", tags: ["Halquinol", "S-Methoprene", "Disinfectants", "Insect growth regulators"], icon: <PackageCheck size={21} /> },
   ];
   return (
-    <section className="ep-market-section"><div className="ep-container">
-      <div className="ep-section-heading"><div><div className="ep-eyebrow ep-eyebrow-light">ONE SOURCING PARTNER</div><h2>Expertise for <span>two markets.</span></h2></div><p>Choose your market to tailor the catalog and sourcing conversation to your requirements.</p></div>
-      <div className="ep-market-cards">{solutions.map((solution) => <button key={solution.key} className={`ep-market-card ${market === solution.key ? "selected" : ""}`} onClick={() => onChange(solution.key)} aria-pressed={market === solution.key}>
+    <section className="ep-market-section" id="categories"><div className="ep-container">
+      <div className="ep-section-heading"><div><div className="ep-eyebrow">OUR PRODUCT CATEGORIES</div><h2>Three core categories.<br /><span>One sourcing partner.</span></h2></div><p>Focused product families for procurement, quality, and formulation teams across human and animal health.</p></div>
+      <div className="ep-market-cards">{solutions.map((solution) => <article key={solution.key} className="ep-market-card">
         <div className="ep-market-card-top"><span className="ep-market-icon">{solution.icon}</span><span className="ep-market-overline">{solution.overline}</span><ArrowUpRight size={17} /></div>
-        <h3>{solution.title}</h3><p>{solution.description}</p><div className="ep-market-tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-      </button>)}</div>
+        <h3>{solution.title}</h3><p>{solution.description}</p><div className="ep-market-tags">{solution.tags.map((tag) => <button key={tag} onClick={() => { onSearch(tag); document.querySelector("#catalog")?.scrollIntoView({ behavior: "smooth" }); }}>{tag}</button>)}</div>
+      </article>)}</div>
     </div></section>
   );
 }
 
-function ProductCard({ product, onQuickView, onAdd }) {
-  const marketLabel = product.markets.length > 1 ? "Human + Veterinary" : product.markets[0];
-  return (
-    <article className="ep-product-card">
-      <div className={`ep-product-band ep-product-${product.color}`}><span className="ep-product-type">{product.category}</span><span className="ep-product-cas">CAS {product.cas}</span></div>
-      <div className="ep-product-body">
-        <div className="ep-product-market">{marketLabel}</div>
-        <h3>{product.name}</h3><p className="ep-product-synonym">{product.therapeuticArea}{product.synonyms.length ? ` · ${product.synonyms.slice(0, 2).join(" · ")}` : ""}</p>
-        <dl className="ep-product-meta">
-          <div><dt>Grade</dt><dd>{product.grade.length ? product.grade.join(" / ") : "Confirm with supplier"}</dd></div>
-          <div><dt>Dossier</dt><dd>{product.regulatory.length ? product.regulatory.slice(0, 2).join(" · ") : "Confirm with supplier"}</dd></div>
-          <div><dt>Lead time</dt><dd>{product.leadTime}</dd></div>
-          <div><dt>Indicative MOQ</dt><dd>{product.moq}</dd></div>
-        </dl>
-        <div className="ep-product-actions"><button onClick={() => onQuickView(product)}>Specifications <ArrowUpRight size={14} /></button><button className="ep-product-add" onClick={() => onAdd(product)}><ShoppingBasket size={15} /> Add to RFQ</button></div>
-      </div>
-    </article>
-  );
-}
-
-function Catalog({ market, search, onSearch, onQuickView, onAdd }) {
+function Catalog({ marketTab, onMarketTabChange, search, onSearch, onQuickView, onAdd }) {
   const [category, setCategory] = useState("All categories");
   const [regulatory, setRegulatory] = useState("Any regulatory status");
   const [grade, setGrade] = useState("Any grade");
   const [area, setArea] = useState("Any therapeutic area");
-  const [productMarket, setProductMarket] = useState("Selected market");
+  const [productMarket, setProductMarket] = useState("Any market");
   const areas = useMemo(() => [...new Set(products.flatMap((product) => product.therapeuticArea))].sort(), []);
   const filtered = useMemo(() => products.filter((product) => {
     const query = search.trim().toLowerCase();
     const matchesSearch = !query || [product.name, product.cas, ...product.synonyms, product.therapeuticArea].some((value) => value.toLowerCase().includes(query));
     const matchesCategory = category === "All categories" || product.category === category;
-    const matchesMarket = productMarket === "Any market" || (productMarket === "Selected market" ? product.markets.includes(market) || product.markets.includes("Human") && product.markets.includes("Veterinary") : product.markets.includes(productMarket) || product.markets.length === 2);
+    const matchesSegment = marketTab === "All Categories"
+      || (marketTab === "Human Health APIs" && product.category === "API" && product.markets.includes("Human"))
+      || (marketTab === "Veterinary APIs" && product.category === "API" && product.markets.includes("Veterinary"));
+    const matchesMarket = productMarket === "Any market" || product.markets.includes(productMarket) || product.markets.length === 2;
     const matchesRegulatory = regulatory === "Any regulatory status" || product.regulatory.includes(regulatory);
     const matchesGrade = grade === "Any grade" || product.grade.includes(grade);
     const matchesArea = area === "Any therapeutic area" || product.therapeuticArea === area;
-    return matchesSearch && matchesCategory && matchesMarket && matchesRegulatory && matchesGrade && matchesArea;
-  }), [search, category, productMarket, market, regulatory, grade, area]);
-  const clearFilters = () => { setCategory("All categories"); setRegulatory("Any regulatory status"); setGrade("Any grade"); setArea("Any therapeutic area"); setProductMarket("Selected market"); onSearch(""); };
+    return matchesSearch && matchesCategory && matchesSegment && matchesMarket && matchesRegulatory && matchesGrade && matchesArea;
+  }), [search, category, marketTab, productMarket, regulatory, grade, area]);
+  const clearFilters = () => { setCategory("All categories"); setRegulatory("Any regulatory status"); setGrade("Any grade"); setArea("Any therapeutic area"); setProductMarket("Any market"); onSearch(""); };
   return (
     <section className="ep-catalog-section" id="catalog">
       <div className="ep-container">
         <div className="ep-section-heading ep-catalog-heading"><div><div className="ep-eyebrow">PRODUCT DISCOVERY</div><h2>Search the <span>catalog.</span></h2></div><p>Search by product name, synonym, CAS number, or therapeutic area. Refine by specification and documentation needs.</p></div>
         <div className="ep-catalog-search"><Search size={18} /><input value={search} onChange={(event) => onSearch(event.target.value)} aria-label="Search product catalog" placeholder="Product name, synonym, CAS number, therapeutic area..." />{search && <button aria-label="Clear search" onClick={() => onSearch("")}><X size={16} /></button>}<span>{filtered.length} products</span></div>
+        <div className="ep-segment-tabs" role="group" aria-label="Filter by health segment">
+          {["All Categories", "Human Health APIs", "Veterinary APIs"].map((tab) => <button key={tab} className={marketTab === tab ? "selected" : ""} aria-pressed={marketTab === tab} onClick={() => onMarketTabChange(tab)}>{tab}</button>)}
+        </div>
         <div className="ep-filters" aria-label="Product filters">
           <label><span>Category</span><select value={category} onChange={(event) => setCategory(event.target.value)}><option>All categories</option>{productCategories.map((item) => <option key={item}>{item}</option>)}</select><ChevronDown size={14} /></label>
-          <label><span>Market</span><select value={productMarket} onChange={(event) => setProductMarket(event.target.value)}><option>Selected market</option>{markets.map((item) => <option key={item}>{item}</option>)}<option>Any market</option></select><ChevronDown size={14} /></label>
+          <label><span>Market</span><select value={productMarket} onChange={(event) => setProductMarket(event.target.value)}><option>Any market</option>{markets.map((item) => <option key={item}>{item}</option>)}</select><ChevronDown size={14} /></label>
           <label><span>Regulatory status</span><select value={regulatory} onChange={(event) => setRegulatory(event.target.value)}><option>Any regulatory status</option>{regulatoryStatuses.map((item) => <option key={item}>{item}</option>)}</select><ChevronDown size={14} /></label>
           <label><span>Pharmacopoeia</span><select value={grade} onChange={(event) => setGrade(event.target.value)}><option>Any grade</option>{pharmacopeias.map((item) => <option key={item}>{item}</option>)}</select><ChevronDown size={14} /></label>
           <label><span>Therapeutic area</span><select value={area} onChange={(event) => setArea(event.target.value)}><option>Any therapeutic area</option>{areas.map((item) => <option key={item}>{item}</option>)}</select><ChevronDown size={14} /></label>
           <button className="ep-clear-filters" onClick={clearFilters}>Clear filters</button>
         </div>
-        <div className="ep-active-market"><span className="ep-market-dot" />Showing {productMarket === "Selected market" ? (market === "Human" ? "human-health" : "veterinary") : productMarket.toLowerCase()} products</div>
-        {filtered.length ? <div className="ep-products-grid">{filtered.map((product) => <ProductCard key={product.id} product={product} onQuickView={onQuickView} onAdd={onAdd} />)}</div> : <div className="ep-empty"><CircleHelp size={22} /><strong>No products match those filters.</strong><span>Adjust your criteria or contact our sourcing team for a specific requirement.</span><button onClick={clearFilters}>Reset search and filters</button></div>}
+        <div className="ep-active-market"><span className="ep-market-dot" />Showing {marketTab === "All Categories" ? "all product categories" : marketTab.toLowerCase()} · {filtered.length} matches</div>
+        {filtered.length ? <div className="ep-table-wrap"><table className="ep-product-table"><thead><tr><th>Product name</th><th>CAS number</th><th>Category</th><th>Therapeutic / application use</th><th>Regulatory status</th><th>Action</th></tr></thead><tbody>{filtered.map((product) => <tr key={product.id}>
+          <td><button className="ep-table-product-name" onClick={() => onQuickView(product)}>{product.name}</button><small>{product.markets.join(" · ")}</small></td>
+          <td className="ep-table-cas">{product.cas}</td><td><span className={`ep-table-category ep-product-${product.color}`}>{product.category}</span></td><td>{product.therapeuticArea}</td>
+          <td>{product.regulatory.length ? <div className="ep-table-statuses">{product.regulatory.map((status) => <span key={status}>{status}</span>)}</div> : <span className="ep-status-request">Confirm on inquiry</span>}</td>
+          <td><div className="ep-table-actions"><button onClick={() => onQuickView(product)}>Inquire</button><button aria-label={`Add ${product.name} to inquiry list`} onClick={() => onAdd(product)}><ShoppingBasket size={15} /> Add to List</button></div></td>
+        </tr>)}</tbody></table></div> : <div className="ep-empty"><CircleHelp size={22} /><strong>No products match those filters.</strong><span>Adjust your criteria or contact our sourcing team for a specific requirement.</span><button onClick={clearFilters}>Reset search and filters</button></div>}
         <p className="ep-data-note">Product examples and specification values are for demonstration only. Confirm current specifications, regulatory status, lead time, and MOQ with Curecopia and the supplying manufacturer.</p>
       </div>
     </section>
@@ -300,6 +291,7 @@ function Footer() {
 
 export default function EnterpriseApp() {
   const [market, setMarket] = useState("Human");
+  const [marketTab, setMarketTab] = useState("All Categories");
   const [search, setSearch] = useState("");
   const [quickView, setQuickView] = useState(null);
   const [rfqOpen, setRfqOpen] = useState(false);
@@ -341,12 +333,12 @@ export default function EnterpriseApp() {
     return { ...item, documents };
   }));
   return <>
-    <Header market={market} onMarketChange={setMarket} itemCount={rfqItems.length} onOpenRfQ={() => setRfqOpen(true)} />
+    <Header market={market} onMarketChange={(nextMarket) => { setMarket(nextMarket); setMarketTab(nextMarket === "Human" ? "Human Health APIs" : "Veterinary APIs"); }} itemCount={rfqItems.length} onOpenRfQ={() => setRfqOpen(true)} />
     <main>
       <Hero market={market} search={search} onSearch={setSearch} onSearchSubmit={scrollToCatalog} />
       <StandardsBar market={market} />
-      <MarketSolutions market={market} onChange={setMarket} />
-      <Catalog market={market} search={search} onSearch={setSearch} onQuickView={setQuickView} onAdd={addProduct} />
+      <MarketSolutions onSearch={setSearch} />
+      <Catalog marketTab={marketTab} onMarketTabChange={(tab) => { setMarketTab(tab); if (tab === "Human Health APIs") setMarket("Human"); if (tab === "Veterinary APIs") setMarket("Veterinary"); }} search={search} onSearch={setSearch} onQuickView={setQuickView} onAdd={addProduct} />
       <QualityVault />
       <BuyerInquiry items={rfqItems} rfqDetails={rfqDetails} />
     </main>

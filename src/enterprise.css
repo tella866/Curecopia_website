@@ -343,3 +343,84 @@ body { min-width: 320px; color: #203642; background: #fff; }
   .ep-spec-grid .ep-spec-wide { grid-column: auto; }
   .ep-footer-main { grid-template-columns: 1fr 1fr; }
 }
+
+.ep-hero-grid { grid-template-columns: minmax(0,1.3fr) minmax(340px,.7fr); gap: 48px; }
+.ep-hero-copy h1 { max-width: 760px; font-size: clamp(38px, 4vw, 54px); line-height: 1.1; }
+.ep-hero-copy > p { max-width: 690px; font-size: 15px; }
+.ep-global-search { max-width: 700px; }
+.ep-quick-searches { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+.ep-quick-searches > span { margin-right: 4px; color: #b7c8ce; font-size: 8px; font-weight: 700; letter-spacing: .1em; }
+.ep-quick-searches button { padding: 5px 8px; color: #e0e9e9; border: 1px solid rgba(220,237,235,.2); background: rgba(255,255,255,.025); font-size: 9px; }
+.ep-quick-searches button:hover { color: white; border-color: #8ab8b4; background: rgba(255,255,255,.08); }
+.ep-hero-links { margin-top: 15px; }
+.ep-market-section { color: #203642; background: #f5f7f8; }
+.ep-market-section .ep-section-heading h2 { color: #1d3443; }
+.ep-market-section .ep-section-heading h2 span { color: #247880; }
+.ep-market-section .ep-section-heading > p { color: #6a7d86; }
+.ep-market-section .ep-eyebrow { color: #227989; }
+.ep-market-cards { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.ep-market-card { min-width: 0; min-height: 260px; color: #415864; border-color: #dfe6e8; background: white; }
+.ep-market-card:hover { border-color: #92b8b8; background: #fff; }
+.ep-market-card-top > svg { color: #778c91; }
+.ep-market-icon { flex: 0 0 auto; color: #277c83; border-color: #d8e5e6; }
+.ep-market-overline { color: #5e777e; line-height: 1.5; }
+.ep-market-card h3 { margin-top: 20px; color: #1f3b4a; font-size: 20px; }
+.ep-market-card p { color: #667983; font-size: 11px; }
+.ep-market-tags { gap: 6px; margin-top: 13px; }
+.ep-market-tags button { padding: 5px 7px; color: #4a6a72; border: 1px solid #e1e9ea; background: #f8fafb; font-size: 8px; }
+.ep-market-tags button:hover { color: #176f75; border-color: #9dc1c0; background: #f1f8f7; }
+
+.ep-segment-tabs { display: flex; align-items: center; gap: 0; margin-top: 15px; border-bottom: 1px solid #dfe6e8; }
+.ep-segment-tabs button { position: relative; min-height: 42px; padding: 0 16px; border: 0; color: #647780; background: transparent; font-size: 11px; font-weight: 500; }
+.ep-segment-tabs button:first-child { padding-left: 4px; }
+.ep-segment-tabs button:hover,.ep-segment-tabs button.selected { color: #176d78; }
+.ep-segment-tabs button.selected { font-weight: 700; }
+.ep-segment-tabs button.selected::after { position: absolute; right: 12px; bottom: -1px; left: 12px; height: 2px; background: #167986; content: ""; }
+.ep-segment-tabs button:first-child.selected::after { left: 2px; }
+.ep-table-wrap { width: 100%; overflow-x: auto; border: 1px solid #dfe6e8; background: #fff; }
+.ep-product-table { width: 100%; min-width: 930px; border-collapse: collapse; text-align: left; }
+.ep-product-table th { height: 42px; padding: 0 12px; color: #576c76; background: #eef2f4; border-bottom: 1px solid #dce4e7; font-size: 9px; font-weight: 700; letter-spacing: .045em; text-transform: uppercase; }
+.ep-product-table td { min-height: 58px; padding: 10px 12px; color: #51666f; border-bottom: 1px solid #e9edef; font-size: 10px; vertical-align: middle; }
+.ep-product-table tbody tr:last-child td { border-bottom: 0; }
+.ep-product-table tbody tr:hover { background: #fafcfc; }
+.ep-table-product-name { display: block; padding: 0; border: 0; color: #1c4656; background: transparent; font-size: 11px; font-weight: 700; text-align: left; }
+.ep-table-product-name:hover { color: #117883; text-decoration: underline; }
+.ep-product-table td:first-child small { display: block; margin-top: 4px; color: #7a8a91; font-size: 8px; }
+.ep-table-cas { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ep-table-category { display: inline-block; padding: 5px 7px; color: #456b76; background: #eaf1f4; font-size: 8px; white-space: nowrap; }
+.ep-table-category.ep-product-teal { color: #3e706d; background: #edf4f2; }
+.ep-table-category.ep-product-green { color: #537359; background: #eff4ed; }
+.ep-table-category.ep-product-amber { color: #796646; background: #f5f2eb; }
+.ep-table-statuses { display: flex; flex-wrap: wrap; gap: 4px; max-width: 190px; }
+.ep-table-statuses span { padding: 4px 5px; color: #39705c; background: #edf5f0; font-size: 8px; white-space: nowrap; }
+.ep-status-request { color: #74838a; font-size: 9px; }
+.ep-table-actions { display: flex; align-items: center; gap: 6px; }
+.ep-table-actions button { min-height: 29px; padding: 0 8px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; color: #42616d; border: 1px solid #d9e2e4; background: #fff; font-size: 9px; white-space: nowrap; }
+.ep-table-actions button:hover { color: #176d78; border-color: #8bb5b6; }
+.ep-table-actions button:last-child { color: white; border-color: #176d78; background: #176d78; }
+.ep-table-actions button:last-child:hover { background: #105a65; }
+
+@media (max-width: 1050px) {
+  .ep-hero-grid { grid-template-columns: minmax(0,1.15fr) minmax(300px,.85fr); gap: 28px; }
+  .ep-hero-copy h1 { font-size: clamp(36px,4.2vw,48px); }
+  .ep-market-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .ep-hero-grid { grid-template-columns: 1fr; gap: 25px; }
+  .ep-hero-copy h1 { max-width: 630px; font-size: clamp(36px,8.5vw,47px); }
+  .ep-hero-copy > p { font-size: 13px; }
+  .ep-quick-searches { gap: 6px; }
+  .ep-market-cards { grid-template-columns: 1fr; }
+  .ep-market-card { min-height: 0; padding: 19px; }
+  .ep-segment-tabs { overflow-x: auto; }
+  .ep-segment-tabs button { flex: 0 0 auto; padding-inline: 12px; font-size: 10px; }
+}
+@media (max-width: 430px) {
+  .ep-hero-copy h1 { font-size: 34px; }
+  .ep-hero-copy > p { font-size: 12px; }
+  .ep-global-search { gap: 7px; padding-left: 9px; }
+  .ep-global-search button { gap: 4px; padding-inline: 7px; font-size: 9px; }
+  .ep-hero-links { flex-wrap: wrap; gap: 9px; }
+  .ep-hero-links > span { padding-left: 9px; }
+  .ep-market-cards { grid-template-columns: 1fr; }
+}
