@@ -132,10 +132,10 @@ function ProductCard({ product, onQuickView, onAdd }) {
       <div className={`ep-product-band ep-product-${product.color}`}><span className="ep-product-type">{product.category}</span><span className="ep-product-cas">CAS {product.cas}</span></div>
       <div className="ep-product-body">
         <div className="ep-product-market">{marketLabel}</div>
-        <h3>{product.name}</h3><p className="ep-product-synonym">{product.synonyms.slice(0, 2).join(" · ")}</p>
+        <h3>{product.name}</h3><p className="ep-product-synonym">{product.therapeuticArea}{product.synonyms.length ? ` · ${product.synonyms.slice(0, 2).join(" · ")}` : ""}</p>
         <dl className="ep-product-meta">
-          <div><dt>Grade</dt><dd>{product.grade.join(" / ")}</dd></div>
-          <div><dt>Dossier</dt><dd>{product.regulatory.slice(0, 2).join(" · ")}</dd></div>
+          <div><dt>Grade</dt><dd>{product.grade.length ? product.grade.join(" / ") : "Confirm with supplier"}</dd></div>
+          <div><dt>Dossier</dt><dd>{product.regulatory.length ? product.regulatory.slice(0, 2).join(" · ") : "Confirm with supplier"}</dd></div>
           <div><dt>Lead time</dt><dd>{product.leadTime}</dd></div>
           <div><dt>Indicative MOQ</dt><dd>{product.moq}</dd></div>
         </dl>
@@ -189,14 +189,14 @@ function ProductModal({ product, onClose, onAdd }) {
   return <div className="ep-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <section className="ep-product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div className="ep-modal-top"><div><span className="ep-modal-kicker">{product.category} · CAS {product.cas}</span><h2 id="modal-title">{product.name}</h2><p>{product.synonyms.join(" · ")}</p></div><button className="ep-icon-button" aria-label="Close product details" onClick={onClose}><X size={19} /></button></div>
-      <div className="ep-modal-badges">{product.markets.map((item) => <span key={item}>{item} health</span>)}{product.grade.map((item) => <span key={item}>{item}</span>)}</div>
+      <div className="ep-modal-badges">{product.markets.map((item) => <span key={item}>{item} health</span>)}{product.grade.map((item) => <span key={item}>{item}</span>)}{!product.grade.length && <span>Grade to be confirmed</span>}</div>
       <div className="ep-spec-grid">
         <div><span>Molecular formula</span><strong>{product.formula}</strong></div><div><span>Assay / purity</span><strong>{product.assay}</strong></div>
         <div><span>Indicative lead time</span><strong>{product.leadTime}</strong></div><div><span>Indicative MOQ</span><strong>{product.moq}</strong></div>
         <div className="ep-spec-wide"><span>Storage conditions</span><strong>{product.storage}</strong></div>
         <div className="ep-spec-wide"><span>Impurity profile</span><strong>{product.impurity}</strong></div>
       </div>
-      <div className="ep-dossier-box"><FileText size={18} /><div><strong>Regulatory dossier status</strong><p>{product.dossier}</p><div className="ep-reg-tags">{product.regulatory.map((status) => <span key={status}><Check size={12} />{status}</span>)}</div></div></div>
+      <div className="ep-dossier-box"><FileText size={18} /><div><strong>Regulatory dossier status</strong><p>{product.dossier}</p><div className="ep-reg-tags">{product.regulatory.length ? product.regulatory.map((status) => <span key={status}><Check size={12} />{status}</span>) : <span>Not provided — request confirmation</span>}</div></div></div>
       <p className="ep-modal-disclaimer">Illustrative product information only; final specifications and dossier access are confirmed during supplier qualification.</p>
       <div className="ep-modal-actions"><button className="ep-secondary-button" onClick={onClose}>Close</button><button className="ep-primary-button" onClick={() => { onAdd(product); onClose(); }}><ShoppingBasket size={16} /> Add to inquiry list</button></div>
     </section>

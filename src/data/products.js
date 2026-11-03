@@ -1,4 +1,4 @@
-export const products = [
+const baseProducts = [
   {
     id: "paracetamol",
     name: "Paracetamol",
@@ -284,6 +284,95 @@ export const products = [
     moq: "100 kg",
     color: "green",
   },
+];
+
+const veterinaryApiRows = [
+  ["Afoxolaner*", "1093861-60-9", "Anti-ticks & anti-fleas"],
+  ["Albendazole", "54965-21-8", "Anthelmintic"],
+  ["Amitraz", "33089-61-1", "Ectoparasiticide"],
+  ["Atovaquone", "95233-18-4", "Antiprotozoal"],
+  ["Buparvaquone", "88426-33-9", "Antiprotozoal"],
+  ["Butaphosphan", "17316-67-5", "Phosphorus supplement"],
+  ["Carprofen", "53716-49-7", "NSAID"],
+  ["Clorsulon", "60200-06-8", "Anthelmintic"],
+  ["Closantel Base", "61438-64-0", "Anthelmintic"],
+  ["Closantel Sodium", "61438-64-0", "Anthelmintic"],
+  ["Decoquinate", "18507-89-6", "Antiprotozoal – coccidiostat"],
+  ["Diminazene Aceturate / Diaceturate", "908-54-3", "Antiprotozoal"],
+  ["Febantel", "58306-30-2", "Anthelmintic"],
+  ["Fenbendazole", "43210-67-9", "Anthelmintic"],
+  ["Fluazuron", "86811-58-7", "Antiparasitic – insect growth regulator"],
+  ["Flumethrin", "69770-45-2", "Ectoparasiticide"],
+  ["Flunixin Meglumine", "42461-84-7", "NSAID"],
+  ["Fluralaner*", "864731-61-3", "Anti-ticks & anti-fleas"],
+  ["Halquinol (98% & 60%)", "8067-69-4", "Growth promoter"],
+  ["Homidium Chloride", "602-52-8", "Antiprotozoal"],
+  ["Imidocarb Dipropionate", "55750-06-6", "Antiprotozoal"],
+  ["Isometamidium Chloride HCl", "6798-24-9", "Antiprotozoal"],
+  ["Lotilaner*", "1362334-54-3", "Anti-ticks & anti-fleas"],
+  ["Marbofloxacin", "115550-35-1", "Anti-bacterial"],
+  ["Maropitant Citrate Monohydrate", "158861-67-7", "Anti-emetic"],
+  ["Meglumine (N-Methyl-D-Glucamine)", "6284-40-8", "Excipient", "Excipient"],
+  ["N-Ethyl-D-Glucamine (Eglumine)", "1852-39-5", "Excipient", "Excipient"],
+  ["Nitroscanate", "55981-09-4", "Anthelmintic"],
+  ["Nitroxynil", "1689-89-0", "Anthelmintic"],
+  ["Oclacitinib maleate*", "1208319-26-9", "Anti-dermatitis / anti-itching"],
+  ["Oxfendazole", "53716-50-0", "Anthelmintic"],
+  ["Parvaquone", "4042-30-2", "Antiprotozoal"],
+  ["Permethrin", "52645-53-1", "Ectoparasiticide"],
+  ["Phenazone", "60-80-0", "Anti-pyretic"],
+  ["Phenylbutazone", "50-33-9", "Anti-inflammatory / NSAID"],
+  ["Ponazuril", "69004-03-1", "Antiprotozoal – coccidiostat"],
+  ["Praziquantel", "55268-74-1", "Anthelmintic"],
+  ["Ractopamine HCL", "90274-24-1", "Growth promoter"],
+  ["Rafoxanide", "22662-39-1", "Anthelmintic"],
+  ["Ricobendazole (Albendazole Sulphoxide)", "54029-12-8", "Anthelmintic"],
+  ["R-Praziquantel", "55268-74-1", "Anthelmintic"],
+  ["Sarolaner*", "1398609-39-6", "Anti-ticks & anti-fleas"],
+  ["S-Methoprene", "65733-16-6", "Antiparasitic – insect growth regulator"],
+  ["Toldimfos Sodium", "575-75-7", "Phosphorus supplement"],
+  ["Toltrazuril", "69004-03-1", "Antiprotozoal – coccidiostat"],
+  ["Triclabendazole", "68786-66-3", "Anthelmintic"],
+  ["Xylazine Base", "7361-61-7", "Analgesic & anesthetic"],
+  ["Xylazine HCl", "23076-35-9", "Analgesic & anesthetic"],
+  ["Zilpaterol", "99200-09-6", "Growth promoter"],
+];
+
+const veterinaryApiProducts = veterinaryApiRows.map(([name, cas, therapeuticArea, category = "API"]) => ({
+  id: `vet-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-$/, "")}`,
+  name,
+  synonyms: name === "Diminazene Aceturate / Diaceturate"
+    ? ["Diminazene Aceturate", "Diminazene Diaceturate"]
+    : name === "N-Ethyl-D-Glucamine (Eglumine)"
+      ? ["Eglumine", "N-Ethyl-D-Glucamine"]
+      : name === "Meglumine (N-Methyl-D-Glucamine)"
+        ? ["Meglumine", "N-Methyl-D-Glucamine"]
+        : name === "Ricobendazole (Albendazole Sulphoxide)"
+          ? ["Ricobendazole", "Albendazole Sulphoxide"]
+          : name === "Closantel Base"
+            ? ["Closantel"]
+            : [],
+  cas,
+  formula: "Confirm with supplier",
+  category,
+  markets: ["Veterinary"],
+  therapeuticArea,
+  grade: [],
+  assay: "Not provided; confirm product specification with supplier.",
+  storage: "Confirm storage conditions with supplier.",
+  impurity: "Request the current impurity profile and specification from supplier.",
+  regulatory: [],
+  dossier: "Not provided. Confirm availability and access for the destination market.",
+  leadTime: "Confirm with supplier",
+  moq: "Confirm with supplier",
+  color: "green",
+}));
+
+const existingVetDuplicates = new Set(["albendazole", "fenbendazole"]);
+
+export const products = [
+  ...baseProducts.filter((product) => !existingVetDuplicates.has(product.id)),
+  ...veterinaryApiProducts,
 ];
 
 export const productCategories = ["API", "Excipient", "Fine Chemical", "Premix"];
